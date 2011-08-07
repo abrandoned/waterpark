@@ -14,8 +14,10 @@ Jeweler::Tasks.new do |gem|
   gem.name = "waterpark"
   gem.homepage = "http://github.com/bdewitt/waterpark"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: WaterPark manages multiple SocketPools }
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{ WaterPark manages multiple SocketPools }
+  gem.description = %Q{ Why a pool manager?  New cache providers have included the ability to add cache servers on-the-fly, 
+                        I needed a socketpooling manager to dynamically add and change the available pools, can be used for
+                        many other things, but the original motivation was topology aware socketpooling for Infinispan }
   gem.email = "brandon+waterpark@myjibe.com"
   gem.authors = ["Brandon Dewitt"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
