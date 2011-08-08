@@ -1,3 +1,4 @@
+require 'socketpool'
 require 'thread'
 
 class WaterPark
@@ -8,7 +9,7 @@ class WaterPark
   
   def add_pool(uid, host, port, opts={})
     @mutex_lock.synchronize do 
-      @pools[uid] = SocketPool.new(host, port, opts)
+      @pools[uid] = ::SocketPool.new(host, port, opts)
     end
 
     return @pools[uid]
@@ -17,7 +18,7 @@ class WaterPark
   def remove_pool(uid, close_pool = true)
     @mutex_lock.synchronize do 
       pool = @pools.delete(uid)
-      pool.close if close_pool
+      pool.close if close_pool && pool
     end
 
     return !close_pool ? pool : nil
@@ -57,5 +58,7 @@ class WaterPark
         remove_pool(pk, true)
       end
     end
+    
+    return true
   end
 end
